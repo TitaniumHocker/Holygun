@@ -22,11 +22,9 @@ async def bell():
     while not bot.is_closed():
         current_time = datetime.today().strftime('%H-%M')
         current_weekday = datetime.today().weekday()
-        await asyncio.sleep(1)
+        channel = bot.get_channel(691958207484264498)
         if current_weekday < 5 and current_time in timetable.keys():
-            for channel in bot.get_all_channels():
-                if channel.type.name == 'text':
-                    await channel.send(timetable[current_time])
+            await channel.send(timetable[current_time])
             await asyncio.sleep(65)
         else:
             await asyncio.sleep(1)
